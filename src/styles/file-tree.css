@@ -1,0 +1,47 @@
+[data-file-tree] [data-folder-item] {
+	color: var(--folder-color);
+	border-color: transparent;
+	background-color: var(--folder-background-color);
+
+	&:hover {
+		color: var(--folder-hover-color);
+		background-color: var(--folder-hover-background-color);
+	}
+	&:focus {
+		color: var(--folder-focus-color);
+		border-color: var(--folder-focus-border-color);
+		background-color: var(--folder-focus-background-color);
+	}
+	&[data-selected="true"]:not(:focus) {
+		color: var(--folder-selected-color);
+		background-color: var(--folder-selected-background-color);
+	}
+	&[data-stuck="true"] {
+		color: var(--stuck-color);
+		border-color: transparent;
+		background-color: var(--stuck-background-color);
+	}
+	&[data-fold="true"] {
+		box-shadow: var(--folding-shadow);
+	}
+}
+
+[data-file-tree] [data-file-item] {
+	color: var(--file-color);
+	border-color: transparent;
+	background-color: var(--file-background-color);
+
+	&:hover {
+		color: var(--file-hover-color);
+		background-color: var(--file-hover-background-color);
+	}
+	&:focus {
+		color: var(--file-focus-color);
+		border-color: var(--file-focus-border-color);
+		background-color: var(--file-focus-background-color);
+	}
+	&[data-selected="true"]:not(:focus) {
+		color: var(--file-selected-color);
+		background-color: var(--file-selected-background-color);
+	}
+}
