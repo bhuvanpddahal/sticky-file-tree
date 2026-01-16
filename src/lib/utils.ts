@@ -64,29 +64,3 @@ export function createFileTree(filePaths: string[]) {
 
     return root;
 }
-
-export function convertRemToPx(remValue: number) {
-    if (typeof window === "undefined" || typeof document === "undefined") {
-        return remValue * 16;
-    }
-
-    const rootElement = document.documentElement;
-    const computedStyle = window.getComputedStyle(rootElement);
-    const rootFontSizeString = computedStyle.fontSize;
-    const rootFontSizePx = parseFloat(rootFontSizeString);
-
-    return remValue * rootFontSizePx;
-}
-
-export function convertPxToRem(pxValue: number) {
-    if (typeof window === "undefined" || typeof document === "undefined") {
-        return pxValue / 16;
-    }
-
-    const rootElement = document.documentElement;
-    const computedStyle = window.getComputedStyle(rootElement);
-    const rootFontSizeString = computedStyle.fontSize;
-    const rootFontSizePx = parseFloat(rootFontSizeString);
-
-    return pxValue / rootFontSizePx;
-}

@@ -9,8 +9,8 @@ export const FileIcon = ({ style, ...props }: IconProps) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             style={{
-                width: "1rem",
-                height: "1rem",
+                width: "16px",
+                height: "16px",
                 flexShrink: 0,
                 ...style
             }}
@@ -35,8 +35,8 @@ export const ArrowIcon = ({ style, ...props }: IconProps) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             style={{
-                width: "1rem",
-                height: "1rem",
+                width: "16px",
+                height: "16px",
                 flexShrink: 0,
                 ...style
             }}

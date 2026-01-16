@@ -1,12 +1,12 @@
-import type { ItemTextProps } from "../types/file-tree";
+import type { NodeTextProps } from "../types/file-tree";
 
-const ItemText = ({ name, style, ...props }: ItemTextProps) => {
+const NodeText = ({ name, style, ...props }: NodeTextProps) => {
     return (
         <span
             {...props}
-            data-item-text
+            data-node-text
             style={{
-                fontSize: "0.875rem",
+                fontSize: "14px",
                 ...(style ?? {}),
                 flex: 1,
                 minWidth: 0,
@@ -21,4 +21,4 @@ const ItemText = ({ name, style, ...props }: ItemTextProps) => {
     );
 };
 
-export default ItemText;
+export default NodeText;

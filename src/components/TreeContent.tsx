@@ -1,15 +1,15 @@
 import Folder from "./Folder";
-import FileItem from "./FileItem";
+import FileNode from "./FileNode";
 import type { TreeContentProps } from "../types/file-tree";
 
 const TreeContent = (
-    { item, parentPath, ...restProps }: TreeContentProps
+    { node, parentPath, ...restProps }: TreeContentProps
 ) => {
-    const currentPath = parentPath ? `${parentPath}/${item.name}` : item.name;
-    const props = { item, ...restProps, currentPath };
+    const currentPath = `${parentPath}${node.name}`;
+    const props = { node, ...restProps, currentPath };
 
-    if (!item.children) {
-        return <FileItem {...props} />;
+    if (!node.children) {
+        return <FileNode {...props} />;
     }
 
     return <Folder {...props} />;

@@ -1,13 +1,13 @@
 import { Activity, type MouseEvent, useRef, useState } from "react";
 
-import FolderItem from "./FolderItem";
+import FolderNode from "./FolderNode";
 import TreeContent from "./TreeContent";
 import { useFileTreeConfig } from "../context/FileTreeConfig";
-import { folderContainerStyle } from "../constants/file-tree";
-import type { FileItemOrFolderProps } from "../types/file-tree";
+import { folderContainerStyles } from "../constants/file-tree";
+import type { FileNodeOrFolderProps } from "../types/file-tree";
 
 const Folder = (
-    { item, depth, elevation, currentPath }: FileItemOrFolderProps
+    { node, depth, elevation, currentPath }: FileNodeOrFolderProps
 ) => {
     const folderContentRef = useRef<HTMLDivElement>(null);
     const { selectedPath, setSelectedPath } = useFileTreeConfig();
@@ -18,9 +18,9 @@ const Folder = (
     const handleClick = (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
         e.stopPropagation();
         const folderContent = folderContentRef.current;
-        const foldedFolderItem = folderContent?.querySelector("[data-folder-item][data-fold=true]");
-        if (foldedFolderItem) {
-            foldedFolderItem.setAttribute("data-fold", "false");
+        const foldedFolderNode = folderContent?.querySelector("[data-folder-node][data-fold=true]");
+        if (foldedFolderNode) {
+            foldedFolderNode.setAttribute("data-fold", "false");
         }
         setIsOpen(!isOpen);
         setSelectedPath(currentPath);
@@ -31,27 +31,27 @@ const Folder = (
             data-folder
             style={{ position: "relative", zIndex: elevation }}
         >
-            <FolderItem
-                item={item}
+            <FolderNode
+                node={node}
                 depth={depth}
                 open={isOpen}
                 selected={isSelected}
                 currentPath={currentPath}
                 onClick={handleClick}
             />
-            <Activity mode={(isOpen && item.children) ? "visible" : "hidden"}>
+            <Activity mode={(isOpen && node.children) ? "visible" : "hidden"}>
                 <div
                     ref={folderContentRef}
                     data-folder-content
-                    style={folderContainerStyle}
+                    style={folderContainerStyles}
                 >
-                    {item.children?.map((subItem, index) => (
+                    {node.children?.map((subNode, index) => (
                         <TreeContent
                             key={index}
-                            item={subItem}
+                            node={subNode}
                             depth={depth + 1}
-                            elevation={item.children!.length - index}
-                            parentPath={currentPath}
+                            elevation={node.children!.length - index}
+                            parentPath={`${currentPath}/`}
                         />
                     ))}
                 </div>

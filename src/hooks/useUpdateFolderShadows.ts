@@ -11,24 +11,22 @@ export const useUpdateFolderShadows = (
         let timeoutId: number;
 
         const updateFolderShadows = () => {
-            const folderItems = fileTree.querySelectorAll("[data-stuck]");
-            if (!folderItems.length) return;
+            const folderNodes = fileTree.querySelectorAll("[data-stuck]");
+            if (!folderNodes.length) return;
 
-            console.log({ folderItems });
+            let hasFoundLastVisibleStuckNode = false;
+            const reversedFolderNodes = [...folderNodes].reverse();
 
-            let hasFoundLastVisibleStuckItem = false;
-            const reversedFolderItems = [...folderItems].reverse();
+            reversedFolderNodes.forEach((node) => {
+                const isVisible = node.checkVisibility();
+                const isStuck = node.getAttribute("data-stuck") === "true";
+                const isVisibleStuckNode = isVisible && isStuck;
 
-            reversedFolderItems.forEach((item) => {
-                const isVisible = item.checkVisibility();
-                const isStuck = item.getAttribute("data-stuck") === "true";
-                const isVisibleStuckItem = isVisible && isStuck;
-
-                if (!hasFoundLastVisibleStuckItem && isVisibleStuckItem) {
-                    hasFoundLastVisibleStuckItem = true;
-                    item.setAttribute("data-fold", "true");
+                if (!hasFoundLastVisibleStuckNode && isVisibleStuckNode) {
+                    hasFoundLastVisibleStuckNode = true;
+                    node.setAttribute("data-fold", "true");
                 } else if (isVisible) {
-                    item.setAttribute("data-fold", "false");
+                    node.setAttribute("data-fold", "false");
                 }
             });
         };
@@ -39,7 +37,7 @@ export const useUpdateFolderShadows = (
                     mutation.type === "attributes" &&
                     mutation.attributeName === "data-stuck" &&
                     mutation.target instanceof HTMLElement &&
-                    mutation.target.hasAttribute("data-folder-item")
+                    mutation.target.hasAttribute("data-folder-node")
             );
             if (hasFolderStuckAttributeChange) {
                 clearTimeout(timeoutId);

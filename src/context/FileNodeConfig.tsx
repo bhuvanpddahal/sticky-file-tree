@@ -1,16 +1,16 @@
 import { createContext, useContext } from "react";
 
 import type {
-    FileItemConfig,
-    FileItemConfigProviderProps
+    FileNodeConfig,
+    FileNodeConfigProviderProps
 } from "../types/file-tree";
 
-const FileItemConfigContext = createContext<FileItemConfig | null>(null);
+const FileItemConfigContext = createContext<FileNodeConfig | null>(null);
 
-export const FileItemConfigProvider = ({
+export const FileNodeConfigProvider = ({
     config,
     children
-}: FileItemConfigProviderProps) => {
+}: FileNodeConfigProviderProps) => {
     return (
         <FileItemConfigContext.Provider value={config}>
             {children}
@@ -18,10 +18,10 @@ export const FileItemConfigProvider = ({
     );
 };
 
-export const useFileItemConfig = () => {
+export const useFileNodeConfig = () => {
     const value = useContext(FileItemConfigContext);
     if (!value) {
-        throw new Error("'useFileItemConfig' must be used within a FileItemConfigProvider");
+        throw new Error("'useFileNodeConfig' must be used within a FileNodeConfigProvider");
     }
 
     return value;

@@ -1,16 +1,16 @@
 import { createContext, useContext } from "react";
 
 import type {
-    FolderItemConfig,
-    FolderItemConfigProviderProps
+    FolderNodeConfig,
+    FolderNodeConfigProviderProps
 } from "../types/file-tree";
 
-const FolderItemConfigContext = createContext<FolderItemConfig | null>(null);
+const FolderItemConfigContext = createContext<FolderNodeConfig | null>(null);
 
-export const FolderItemConfigProvider = ({
+export const FolderNodeConfigProvider = ({
     config,
     children
-}: FolderItemConfigProviderProps) => {
+}: FolderNodeConfigProviderProps) => {
     return (
         <FolderItemConfigContext.Provider value={config}>
             {children}
@@ -18,10 +18,10 @@ export const FolderItemConfigProvider = ({
     );
 };
 
-export const useFolderItemConfig = () => {
+export const useFolderNodeConfig = () => {
     const value = useContext(FolderItemConfigContext);
     if (!value) {
-        throw new Error("'useFolderItemConfig' must be used within a FolderItemConfigProvider");
+        throw new Error("'useFolderNodeConfig' must be used within a FolderNodeConfigProvider");
     }
 
     return value;

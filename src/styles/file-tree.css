@@ -1,4 +1,4 @@
-[data-file-tree] [data-folder-item] {
+[data-file-tree] [data-folder-node] {
 	color: var(--folder-color);
 	border-color: transparent;
 	background-color: var(--folder-background-color);
@@ -16,17 +16,31 @@
 		color: var(--folder-selected-color);
 		background-color: var(--folder-selected-background-color);
 	}
-	&[data-stuck="true"] {
+	&[data-folder-node][data-stuck="true"] {
 		color: var(--stuck-color);
 		border-color: transparent;
 		background-color: var(--stuck-background-color);
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: -1px;
+			background-color: var(--stuck-background-color);
+			z-index: -1;
+		}
+		&:hover {
+			color: var(--folder-hover-color);
+		}
+		&:hover::before {
+			background-color: var(--folder-hover-background-color);
+		}
 	}
 	&[data-fold="true"] {
 		box-shadow: var(--folding-shadow);
 	}
 }
 
-[data-file-tree] [data-file-item] {
+[data-file-tree] [data-file-node] {
 	color: var(--file-color);
 	border-color: transparent;
 	background-color: var(--file-background-color);
