@@ -6,7 +6,7 @@ const NodeText = ({ name, style, ...props }: NodeTextProps) => {
             {...props}
             data-node-text
             style={{
-                fontSize: "14px",
+                fontSize: 14,
                 ...(style ?? {}),
                 flex: 1,
                 minWidth: 0,

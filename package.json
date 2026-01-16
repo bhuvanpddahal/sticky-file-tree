@@ -1,6 +1,6 @@
 {
   "name": "sticky-file-tree",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A customizable file tree component for React apps.",
   "homepage": "https://github.com/bhuvanpddahal/sticky-file-tree#readme",
   "bugs": {

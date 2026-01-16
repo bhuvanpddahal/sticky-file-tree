@@ -54,11 +54,11 @@ const FolderNode = (
             data-fold="false"
             style={{
                 ...treeNodeStyles,
-                ...((scrollContainerRef && folding) ? { ...folderNodeStyles, top: `${top}px` } : {}),
-                height: `${height}px`,
-                paddingLeft: `${depthOffset + leftOffset}px`,
-                paddingRight: `${rightOffset}px`,
-                columnGap: `${columnGap}px`
+                ...((scrollContainerRef && folding) ? { ...folderNodeStyles, top } : {}),
+                height,
+                paddingLeft: depthOffset + leftOffset,
+                paddingRight: rightOffset,
+                columnGap
             }}
             onClick={onClick}
         >

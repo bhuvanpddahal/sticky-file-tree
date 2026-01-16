@@ -17,10 +17,9 @@ import { FolderNodeConfigProvider } from "../context/FolderNodeConfig";
 import { useUpdateFolderShadows } from "../hooks/useUpdateFolderShadows";
 
 /**
- * This component renders a highly customizable, accessible, and performant 
- * tree structure for file system navigation.
+ * This component renders a customizable tree structure for file system navigation.
+ * @see {@link https://www.npmjs.com/package/sticky-file-tree|Full Documentation}
  */
-// @see {@link https://my-docs-site.com/components/file-tree|Full Documentation}
 const FileTree = ({
     files,
     onFileSelect,

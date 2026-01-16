@@ -52,11 +52,11 @@ const FileNode = (
             data-selected={isSelected}
             style={{
                 ...treeNodeStyles,
-                height: `${height}px`,
+                height,
                 position: "relative",
-                paddingLeft: `${depthOffset + leftOffset}px`,
-                paddingRight: `${rightOffset}px`,
-                columnGap: `${columnGap}px`,
+                paddingLeft: depthOffset + leftOffset,
+                paddingRight: rightOffset,
+                columnGap,
                 zIndex: elevation
             }}
             onClick={handleClick}

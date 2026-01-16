@@ -53,9 +53,11 @@ export const treeNodeStyles: HTMLAttributes<HTMLButtonElement>["style"] = {
     display: "flex",
     alignItems: "center",
     justifyContent: "start",
+    fontWeight: 400,
     whiteSpace: "nowrap",
     borderWidth: "1px",
     borderStyle: "solid",
+    borderRadius: 0,
     cursor: "pointer"
 };
 

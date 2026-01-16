@@ -45,7 +45,7 @@ function App() {
 }
 ```
 
-> **Note:** If you want to have the sticky behavior, you must pass the Ref of the parent scrollable element.
+> **Note:** If you want to have sticky behavior, you must pass the Ref of the parent scrollable element.
 
 ---
 
@@ -73,7 +73,7 @@ You can replace the default text or icons with your own components. This is usef
 
 ### With a File Icon Library
 
-You can also use a file/folder icon library to add file and folder specific icons.
+You can also use it with a file/folder icon library to add file and folder specific icons.
 
 ```tsx
 import { useRef } from "react";
@@ -118,15 +118,15 @@ function App() {
 }
 ```
 
-> **Note:** By default, when using the custom file/folder elements, `Sticky File Tree` likely won't align the nodes as you want. For that, we can use `depthOffset` callback to provide the logic for the indentation.
+> **Note:** When implementing custom file or folder elements, **Sticky File Tree** may not automatically apply the expected node alignment. To ensure correct visual hierarchy, utilize the `depthOffset` callback to define your custom indentation logic.
 
 ---
 
 ## API Reference
 
-### 1. `FileTreeProps`
+### 1. `props`
 
-These are the primary props passed to the `<FileTree />` component.
+These are all the props accepted by the `<FileTree />` component.
 
 | Prop                 | Type                               | Default                           | Description                                                       |
 | -------------------- | ---------------------------------- | --------------------------------- | ----------------------------------------------------------------- |
@@ -146,33 +146,33 @@ These are the primary props passed to the `<FileTree />` component.
 
 Global settings applied to every node in the tree.
 
-| Option         | Type                | Default                                                     | Description                                            |
-| -------------- | ------------------- | ----------------------------------------------------------- | ------------------------------------------------------ |
-| `height`       | `number`            | `28`                                                        | Row height in pixels.                                  |
-| `gap`          | `number`            | `8`                                                         | Spacing between the icon and the text label.           |
-| `inlineOffset` | `number`            | `{ left: 12, right: 4 }`                                    | Horizontal padding inside the node row.                |
-| `depthOffset`  | `(props) => number` | `({ depth, depthDistance }) => depthDistance * (depth - 1)` | Custom function to calculate indentation per level.    |
-| `colors`       | `BaseColorsProps`   | `Theme defaults`                                            | Global color states (Default, Hover, Focus, Selected). |
+| Option         | Type                                           | Default                                                     | Description                                            |
+| -------------- | ---------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------ |
+| `height`       | `number`                                       | `28`                                                        | Row height in pixels.                                  |
+| `gap`          | `number`                                       | `8`                                                         | Spacing between the icon and the text label.           |
+| `inlineOffset` | `number \| { left?: number; right?: number; }` | `{ left: 12, right: 4 }`                                    | Horizontal padding inside the node row.                |
+| `depthOffset`  | `(props: DepthOffsetProps) => number`          | `({ depth, depthDistance }) => depthDistance * (depth - 1)` | Custom function to calculate indentation per level.    |
+| `colors`       | `BaseColorsProps`                              | Theme defaults                                              | Global color states (Default, Hover, Focus, Selected). |
 
 ### 3. `fileOptions`
 
 Specific to files. Inherits options from `nodeOptions`.
 
-| Option | Type                          | Description                                        |
-| ------ | ----------------------------- | -------------------------------------------------- |
-| `icon` | `Component \| IconProps`      | Custom file icon or props for the default icon.    |
-| `text` | `Component \| HTMLAttributes` | Custom label renderer or standard span attributes. |
+| Option | Type                                                                | Description                                        |
+| ------ | ------------------------------------------------------------------- | -------------------------------------------------- |
+| `icon` | `ComponentType<CustomFileProps> \| IconProps`                       | Custom file icon or props for the default icon.    |
+| `text` | `ComponentType<CustomFileProps> \| HTMLAttributes<HTMLSpanElement>` | Custom label renderer or standard span attributes. |
 
 ### 4. `folderOptions`
 
 Specific to folders. Inherits from `nodeOptions` (except `colors` which adds the `stuck` state).
 
-| Option          | Type                          | Description                                                        |
-| --------------- | ----------------------------- | ------------------------------------------------------------------ |
-| `icon`          | `Component \| IconProps`      | Custom folder icon (can change based on `open` state).             |
-| `text`          | `Component \| HTMLAttributes` | Custom label renderer or standard span attributes.                 |
-| `foldingShadow` | `string`                      | CSS box-shadow applied when a folder header is "stuck" at the top. |
-| `colors.stuck`  | `ColorProps`                  | Colors applied specifically when the folder is sticky/stuck.       |
+| Option          | Type                                                                  | Description                                                        |
+| --------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `icon`          | `ComponentType<CustomFolderProps> \| IconProps`                       | Custom folder icon or props for the default icon.                  |
+| `text`          | `ComponentType<CustomFolderProps> \| HTMLAttributes<HTMLSpanElement>` | Custom label renderer or standard span attributes.                 |
+| `foldingShadow` | `string`                                                              | CSS box-shadow applied when a folder header is "stuck" at the top. |
+| `colors.stuck`  | `ColorProps`                                                          | Colors applied specifically when the folder is sticky/stuck.       |
 
 ---
 
