@@ -1,14 +1,14 @@
 {
-  "name": "react-file-tree",
+  "name": "sticky-file-tree",
   "version": "0.0.1",
   "description": "A customizable file tree component for React apps.",
-  "homepage": "https://github.com/bhuvanpddahal/react-file-tree#readme",
+  "homepage": "https://github.com/bhuvanpddahal/sticky-file-tree#readme",
   "bugs": {
-    "url": "https://github.com/bhuvanpddahal/react-file-tree/issues"
+    "url": "https://github.com/bhuvanpddahal/sticky-file-tree/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bhuvanpddahal/react-file-tree.git"
+    "url": "git+https://github.com/bhuvanpddahal/sticky-file-tree.git"
   },
   "license": "ISC",
   "author": "Bhuvan Dahal",
