@@ -15,7 +15,6 @@ A customizable File Tree component built specifically for the React 19 ecosystem
 
 ```bash
 npm install sticky-file-tree
-
 ```
 
 ## Quick Start
@@ -143,8 +142,6 @@ These are the primary props passed to the `<FileTree />` component.
 | `fileOptions`        | `TreeFileNodeOptions`              | See below                         | Specific overrides for file (leaf) nodes.                         |
 | `folderOptions`      | `TreeFolderNodeOptions`            | See below                         | Specific overrides for folder (branch) nodes.                     |
 
----
-
 ### 2. `nodeOptions`
 
 Global settings applied to every node in the tree.
@@ -157,8 +154,6 @@ Global settings applied to every node in the tree.
 | `depthOffset`  | `(props) => number` | `({ depth, depthDistance }) => depthDistance * (depth - 1)` | Custom function to calculate indentation per level.    |
 | `colors`       | `BaseColorsProps`   | `Theme defaults`                                            | Global color states (Default, Hover, Focus, Selected). |
 
----
-
 ### 3. `fileOptions`
 
 Specific to files. Inherits options from `nodeOptions`.
@@ -167,8 +162,6 @@ Specific to files. Inherits options from `nodeOptions`.
 | ------ | ----------------------------- | -------------------------------------------------- |
 | `icon` | `Component \| IconProps`      | Custom file icon or props for the default icon.    |
 | `text` | `Component \| HTMLAttributes` | Custom label renderer or standard span attributes. |
-
----
 
 ### 4. `folderOptions`
 
