@@ -48,7 +48,7 @@ const FileTree = ({
             data-file-tree
             style={{
                 ...fileTreeStyles,
-                paddingBottom: `${paddingBottom}px`,
+                paddingBottom,
                 backgroundColor: backgroundColor ?? DEFAULT_VARIABLES[theme].backgroundColor
             }}
         >

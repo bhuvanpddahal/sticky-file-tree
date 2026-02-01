@@ -4,10 +4,10 @@ A customizable File Tree component built specifically for the React 19 ecosystem
 
 ## Features
 
--   📂 **VS Code Style Sticky Headers:** Parent folders "stick" to the top while scrolling through their content.
--   🎨 **Dynamic Theming:** Color injection using CSS variables for instant theme switching.
--   🔡 **Auto-Sorting:** Intelligently sorts folders first, then files, both alphabetically.
--   🧩 **Component Slots:** Override any part of the tree (Icons, Labels) with your own React components.
+- 📂 **VS Code Style Sticky Headers:** Parent folders "stick" to the top while scrolling through their content.
+- 🎨 **Dynamic Theming:** Color injection using CSS variables for instant theme switching.
+- 🔡 **Auto-Sorting:** Intelligently sorts folders first, then files, both alphabetically.
+- 🧩 **Component Slots:** Override any part of the tree (Icons, Labels) with your own React components.
 
 ---
 
@@ -31,13 +31,16 @@ const files = [
 ];
 
 function App() {
-    const ref = useRef<HTMLDivElement>(null);
+	const ref = useRef<HTMLDivElement>(null);
 
 	return (
-		<div ref={ref} style={{ width: "320px", height: "640px" overflow: "auto" }}>
+		<div
+			ref={ref}
+			style={{ width: "320px", height: "640px", overflow: "auto" }}
+		>
 			<FileTree
 				files={files}
-                scrollContainerRef={ref}
+				scrollContainerRef={ref}
 				onFileSelect={(props) => console.log(props)}
 			/>
 		</div>
@@ -81,39 +84,42 @@ import { ArrowIcon, FileTree } from "sticky-file-tree";
 import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
 
 function App() {
-    const ref = useRef<HTMLDivElement>(null);
+	const ref = useRef<HTMLDivElement>(null);
 
 	return (
-        <div ref={ref} style={{ width: "320px", height: "640px" overflow: "auto" }}>
-            <FileTree
-                files={files}
-                scrollContainerRef={ref}
-                fileOptions={{
-                    icon: ({ name }) => (
-                        <FileIcon
-                            fileName={name}
-                            style={{ width: "16px", height: "16px" }}
-                        />
-                    ),
-                    depthOffset: ({ depth, depthDistance, gap }) => {
-                        return depthDistance * (depth - 1) + gap + 16;
-                    }
-                }}
-                folderOptions={{
-                    icon: ({ name, open }) => (
-                        <>
-                            <ArrowIcon
-                                style={{ rotate: open ? "90deg" : undefined }}
-                            />
-                            <FolderIcon
-                                folderName={name}
-                                style={{ width: "16px", height: "16px" }}
-                            />
-                        </>
-                    )
-                }}
-            />
-        </div>
+		<div
+			ref={ref}
+			style={{ width: "320px", height: "640px", overflow: "auto" }}
+		>
+			<FileTree
+				files={files}
+				scrollContainerRef={ref}
+				fileOptions={{
+					icon: ({ name }) => (
+						<FileIcon
+							fileName={name}
+							style={{ width: "16px", height: "16px" }}
+						/>
+					),
+					depthOffset: ({ depth, depthDistance, gap }) => {
+						return depthDistance * (depth - 1) + gap + 16;
+					}
+				}}
+				folderOptions={{
+					icon: ({ name, open }) => (
+						<>
+							<ArrowIcon
+								style={{ rotate: open ? "90deg" : undefined }}
+							/>
+							<FolderIcon
+								folderName={name}
+								style={{ width: "16px", height: "16px" }}
+							/>
+						</>
+					)
+				}}
+			/>
+		</div>
 	);
 }
 ```
