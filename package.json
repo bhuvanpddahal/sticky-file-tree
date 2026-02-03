@@ -1,6 +1,6 @@
 {
   "name": "sticky-file-tree",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A customizable file tree component for React apps.",
   "homepage": "https://github.com/bhuvanpddahal/sticky-file-tree#readme",
   "bugs": {
@@ -23,6 +23,13 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "rollup": "rollup -c --bundleConfigAsCjs",
     "test": "echo \"Error: no test specified\" && exit 1"

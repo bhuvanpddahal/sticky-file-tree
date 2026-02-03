@@ -1,6 +1,10 @@
+[data-file-tree] [data-tree-node] {
+	outline: 1px solid transparent;
+	outline-offset: -1px;
+}
+
 [data-file-tree] [data-folder-node] {
 	color: var(--folder-color);
-	border-color: transparent;
 	background-color: var(--folder-background-color);
 
 	&:hover {
@@ -9,7 +13,7 @@
 	}
 	&:focus {
 		color: var(--folder-focus-color);
-		border-color: var(--folder-focus-border-color);
+		outline-color: var(--folder-focus-border-color);
 		background-color: var(--folder-focus-background-color);
 	}
 	&[data-selected="true"]:not(:focus) {
@@ -18,7 +22,7 @@
 	}
 	&[data-folder-node][data-stuck="true"] {
 		color: var(--stuck-color);
-		border-color: transparent;
+		outline-color: transparent;
 		background-color: var(--stuck-background-color);
 
 		&::before {
@@ -42,7 +46,6 @@
 
 [data-file-tree] [data-file-node] {
 	color: var(--file-color);
-	border-color: transparent;
 	background-color: var(--file-background-color);
 
 	&:hover {
@@ -51,7 +54,7 @@
 	}
 	&:focus {
 		color: var(--file-focus-color);
-		border-color: var(--file-focus-border-color);
+		outline-color: var(--file-focus-border-color);
 		background-color: var(--file-focus-background-color);
 	}
 	&[data-selected="true"]:not(:focus) {

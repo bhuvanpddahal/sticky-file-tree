@@ -23,9 +23,12 @@ npm install sticky-file-tree
 import { useRef } from "react";
 import { FileTree } from "sticky-file-tree";
 
+// File paths must be relative and should not start with a leading slash /.
+// The component uses these strings to construct the internal tree hierarchy.
 const files = [
 	"src/components/Button.tsx",
 	"src/utils/format.ts",
+	"src/main.tsx",
 	"package.json",
 	"public/favicon.ico"
 ];
@@ -36,25 +39,26 @@ function App() {
 	return (
 		<div
 			ref={ref}
-			style={{ width: "320px", height: "640px", overflow: "auto" }}
+			// Ensure your container has a defined height and overflow: auto.
+			style={{ width: "280px", height: "640px", overflow: "auto" }}
 		>
 			<FileTree
 				files={files}
 				scrollContainerRef={ref}
-				onFileSelect={(props) => console.log(props)}
+				onFileSelect={console.log}
 			/>
 		</div>
 	);
 }
 ```
 
-> **Note:** If you want to have sticky behavior, you must pass the Ref of the parent scrollable element.
+> **Note:** If you want to enable sticky behavior, you must pass the Ref of the parent scrollable element.
 
 ---
 
 ## Compatibility
 
-**React 19+** This package is built exclusively for the React 19 ecosystem to leverage the latest performance optimizations. It does not support React 18 or older.
+**React 19.2.0+** This package is built exclusively for the React 19 ecosystem to leverage the latest performance optimizations. It does not support React 18 or older.
 
 ---
 
@@ -62,66 +66,59 @@ function App() {
 
 ### The "Slot" Pattern
 
-You can replace the default text or icons with your own components. This is useful for adding file-type specific icons (e.g., JS, TS, PDF).
+The component utilizes a flexible slot pattern, allowing you to intercept and replace default elements with custom logic. This is particularly useful for conditional styling or state-aware icons.
 
 ```tsx
 <FileTree
 	fileOptions={{
-		icon: ({ name, selected }) => (
-			<span>{name.endsWith(".ts") ? "🟦" : "📄"}</span>
-		)
+		// Use a blue square for TypeScript files, default icon for others
+		icon: ({ name }) => <span>{name.endsWith(".ts") ? "🟦" : "📄"}</span>
+	}}
+	folderOptions={{
+		// Toggle emoji based on the folder's open/closed state
+		icon: ({ open }) => <span>{open ? "📂" : "📁"}</span>
 	}}
 />
 ```
 
-### With a File Icon Library
+### Third-Party Icon Integration
 
-You can also use it with a file/folder icon library to add file and folder specific icons.
+While the component provides sensible defaults, it is designed to be agnostic regarding asset providers. You can easily integrate specialized icon sets to create a high-fidelity interface.
+
+In the following example, we demonstrate integration with the [`@react-symbols/icons`](https://www.npmjs.com/package/@react-symbols/icons) library, though the same pattern applies to any custom SVG set.
 
 ```tsx
 import { useRef } from "react";
 import { ArrowIcon, FileTree } from "sticky-file-tree";
 import { FileIcon, FolderIcon } from "@react-symbols/icons/utils";
+```
 
-function App() {
-	const ref = useRef<HTMLDivElement>(null);
-
-	return (
-		<div
-			ref={ref}
-			style={{ width: "320px", height: "640px", overflow: "auto" }}
-		>
-			<FileTree
-				files={files}
-				scrollContainerRef={ref}
-				fileOptions={{
-					icon: ({ name }) => (
-						<FileIcon
-							fileName={name}
-							style={{ width: "16px", height: "16px" }}
-						/>
-					),
-					depthOffset: ({ depth, depthDistance, gap }) => {
-						return depthDistance * (depth - 1) + gap + 16;
-					}
-				}}
-				folderOptions={{
-					icon: ({ name, open }) => (
-						<>
-							<ArrowIcon
-								style={{ rotate: open ? "90deg" : undefined }}
-							/>
-							<FolderIcon
-								folderName={name}
-								style={{ width: "16px", height: "16px" }}
-							/>
-						</>
-					)
-				}}
+```tsx
+<FileTree
+	fileOptions={{
+		icon: ({ name }) => (
+			<FileIcon
+				fileName={name}
+				style={{ width: "16px", height: "16px" }}
 			/>
-		</div>
-	);
-}
+		),
+		// Fine-tune alignment when using custom icons
+		depthOffset: ({ depth, depthDistance, gap }) => {
+			return depthDistance * (depth - 1) + gap + 16;
+		}
+	}}
+	folderOptions={{
+		icon: ({ name, open }) => (
+			<>
+				<ArrowIcon style={{ rotate: open ? "90deg" : "0deg" }} />
+				<FolderIcon
+					folderName={name}
+					style={{ width: "16px", height: "16px" }}
+				/>
+			</>
+		)
+	}}
+/>
 ```
 
 > **Note:** When implementing custom file or folder elements, **Sticky File Tree** may not automatically apply the expected node alignment. To ensure correct visual hierarchy, utilize the `depthOffset` callback to define your custom indentation logic.
