@@ -85,15 +85,16 @@ interface CustomBaseProps {
     name: string;
 }
 
-interface CustomFileProps extends CustomBaseProps {
+export interface CustomFileProps extends CustomBaseProps {
     selected: boolean;
 }
 
-interface CustomFolderProps extends CustomBaseProps {
+export interface CustomFolderProps extends CustomBaseProps {
+    selected: boolean;
     open: boolean;
 }
 
-interface DepthOffsetProps {
+export interface DepthOffsetProps {
     depth: number;
     depthDistance: number;
     gap: number;

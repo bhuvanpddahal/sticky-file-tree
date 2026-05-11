@@ -1,5 +1,8 @@
 import FileTree from "./components/FileTree";
 import type {
+    CustomFileProps,
+    CustomFolderProps,
+    DepthOffsetProps,
     FileTreeProps,
     Theme,
     TreeFileNodeOptions,
@@ -14,7 +17,10 @@ export {
     ArrowIcon,
     type FileTreeProps,
     type TreeNodeOptions,
+    type DepthOffsetProps,
     type TreeFileNodeOptions,
+    type CustomFileProps,
     type TreeFolderNodeOptions,
+    type CustomFolderProps,
     type Theme
 };
