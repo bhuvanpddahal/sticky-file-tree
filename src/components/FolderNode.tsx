@@ -24,7 +24,7 @@ const FolderNode = (
     const { folderOptions, folding, scrollContainerRef } = useFolderNodeConfig();
     const { inlineOffset = defaultInlineOffset } = nodeOptions ?? {};
 
-    const customProps = { path: currentPath, name: node.name, open };
+    const customProps = { path: currentPath, name: node.name, selected, open };
     const height = folderOptions?.height ?? nodeOptions?.height ?? DEFAULT_NODE_HEIGHT;
     const top = height * (depth - 1);
     const defaultDepthOffset = depthDistance * (depth - 1);

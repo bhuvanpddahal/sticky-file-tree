@@ -24,7 +24,7 @@ import { useRef } from "react";
 import { FileTree } from "sticky-file-tree";
 
 // File paths must be relative and should not start with a leading slash /.
-// The component uses these strings to construct the internal tree hierarchy.
+// The component uses these strings to construct the tree hierarchy.
 const files = [
 	"src/components/Button.tsx",
 	"src/utils/format.ts",
